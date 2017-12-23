@@ -34,8 +34,7 @@ import { StatisticsPage } from '../pages/statistics/statistics';
     StatisticsPage
   ],
   imports: [
-    BrowserModule,HttpModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),BrowserModule,HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -55,7 +54,7 @@ import { StatisticsPage } from '../pages/statistics/statistics';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthService
+    AuthService, LoginPage
   ]
 })
 export class AppModule {}

@@ -10,15 +10,19 @@ import { Daybook } from './../../models/daybook';
 })
 export class DayBookDetailsPage {
   dayBookList: Daybook[];
+  companyId: string;
 
   constructor(
     private navParams: NavParams,
     private alertCtrl: AlertController,
   ) { }
 
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad DayBook details');
+    this.companyId = localStorage.getItem('companyId');
+  }
   ngOnInit() {
     this.dayBookList = this.navParams.data;
-    // console.log(this.dayBookList);
   }
 
   displayINR(amount: number) {

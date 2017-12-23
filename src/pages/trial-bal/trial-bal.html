@@ -13,13 +13,14 @@
       </ion-buttons> -->
       <ion-title>Trail Balance</ion-title>
       <ion-buttons right>
-        <img alt="logo" height="40" src="./assets/icon/icon.png">
+        <img alt="logo" height="40" src="./assets/icon/{{companyId}}.png">
       </ion-buttons>
     </ion-navbar>
   
   </ion-header>
   
-  <ion-content padding class="bg">
+  <ion-content padding>
+  <!-- <ion-content padding class="bg"> -->
     <ion-list>
       <ion-list>
         <ion-item-sliding *ngFor="let item of trialBalanceList">
@@ -64,10 +65,10 @@
   
           </ion-item>
           <ion-item-options>
-            <button ion-button color="danger" (click)="onRemoveFromList(item)">
+            <!-- <button ion-button color="danger" (click)="onRemoveFromList(item)">
               <ion-icon name="trash"></ion-icon>
               Remove
-            </button>
+            </button> -->
           </ion-item-options>
         </ion-item-sliding>
       </ion-list>

@@ -12,6 +12,7 @@ import { AuthService } from './../../providers/auth-service/auth-service';
 export class TrialBalPage implements OnInit {
   trialBalanceList: any[];
   loading: any;
+  companyId: string;
   
   constructor(private popoverCtrl: PopoverController,
     private authService: AuthService,
@@ -29,15 +30,17 @@ export class TrialBalPage implements OnInit {
   }
   showLoader(){
     this.loading = this.loadingCtrl.create({
-        content: 'Authenticating...'
+        content: 'Gathering Trial Balance...'
     });
 
     this.loading.present();
   }
   ngOnInit() {
-    const loading = this.loadingCtrl.create({
-      content: 'Loading please wait...'
-    });
+    this.showLoader();
+    // const loading = this.loadingCtrl.create({
+    //   content: 'Loading please wait...'
+    // });
+    this.companyId = localStorage.getItem('companyId');
     // const popover = this.popoverCtrl.create(DatabaseOptionsPage);
     // popover.present({ev: event});
     // popover.onDidDismiss(
@@ -53,8 +56,8 @@ export class TrialBalPage implements OnInit {
         this.authService.fetchTrialBalance()
           .subscribe(
           (list: any[]) => {
-            loading.dismiss();
-            console.log(list);
+            this.loading.dismiss();
+            // console.log(list);
             this.trialBalanceList = list;
             // if (list) {
             //   this.listItems = list;
@@ -63,7 +66,7 @@ export class TrialBalPage implements OnInit {
             // }
           },
           error => {
-            loading.dismiss();
+            this.loading.dismiss();
             this.handleError(error.json().error);
           }
           );

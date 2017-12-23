@@ -23,7 +23,8 @@ export class StatisticsPage {
   @ViewChild('pieCanvas') pieCanvas;
   @ViewChild('bubbleCanvas') bubbleCanvas;
   @ViewChild('mixedCanvas') mixedCanvas;
-
+  loading: any;
+  companyId: string;
   barChart: any;
   doughnutChart: any;
   lineChart: any;
@@ -49,23 +50,34 @@ export class StatisticsPage {
   constructor(public navCtrl: NavController,
     private authService: AuthService,
     private loadingCtrl: LoadingController,
-    private alertCtrl: AlertController) { }
+    private alertCtrl: AlertController) {
+  }
 
+
+  showLoader() {
+    this.loading = this.loadingCtrl.create({
+      content: 'Drawing Graph...'
+    });
+
+    this.loading.present();
+  }
   ionViewDidEnter() {
     console.log("Did enter...");
-    const loading = this.loadingCtrl.create({
-      content: 'Please wait...'
-    });
+    // const loading = this.loadingCtrl.create({
+    //   content: 'Please wait...'
+    // });
+    this.showLoader();
+    this.companyId = localStorage.getItem('companyId');
 
     // this.authService.getActiveUser().getToken()
     // .then(
     // (token: string) => {
     // console.log(token);
-    this. authService.fetchStatisticsData()
+    this.authService.fetchStatisticsData()
       .subscribe(
       (list) => {
         this.prodStatistics = list;
-        console.log(this.prodStatistics);
+        // console.log(this.prodStatistics);
         this.prod_data = [];
         this.prod_month = [];
         this.sales_data = [];
@@ -74,11 +86,11 @@ export class StatisticsPage {
         for (var i = 0; i < this.prodStatistics.productionSummaryByMonth.length; i++)
           if (Number(this.prodStatistics.productionSummaryByMonth[i].amount) > 0) {
             this.prod_data[i] = Math.round(this.prodStatistics.productionSummaryByMonth[i].amount / 1000);
-            this.prod_month[i] = this.prodStatistics.productionSummaryByMonth[i].month.substring(0,3);
+            this.prod_month[i] = this.prodStatistics.productionSummaryByMonth[i].month.substring(0, 3);
           }
-        console.log(this.prod_data.length);
-        console.log(this.prod_data);
-        console.log(this.prod_month);
+        (this.prod_data.length);
+        // console.log(this.prod_data);
+        // console.log(this.prod_month);
 
         for (var i = 0; i < this.prodStatistics.salesSummaryByMonth.length; i++)
           if (Number(this.prodStatistics.salesSummaryByMonth[i].amount) > 0) {
@@ -87,19 +99,19 @@ export class StatisticsPage {
             // console.log(Math.round(this.prodStatistics.salesSummaryByMonth[i].amount/1000));
             this.sales_data[i] = Math.round(this.prodStatistics.salesSummaryByMonth[i].amount / 100000);
             // this.sales_data[i] = Number(this.prodStatistics.salesSummaryByMonth[i].amount/1000);
-            this.sales_month[i] = this.prodStatistics.salesSummaryByMonth[i].month.substring(0,3);
+            this.sales_month[i] = this.prodStatistics.salesSummaryByMonth[i].month.substring(0, 3);
           }
 
         // this.numbers.push(Number(this.prodStatistics.stockWeek/1000));
         // this.numbers.push(Number(this.prodStatistics.stockMonth/1000));
         // this.numbers.push(Number(this.prodStatistics.stockQuarter/1000));
         // this.numbers.push(Number(this.prodStatistics.stockYear)/1000);
-        loading.dismiss();
+        this.loading.dismiss();
         this.barChart = this.getLineChart();
         this.barChart = this.getBarChart();
       },
       error => {
-        loading.dismiss();
+        this.loading.dismiss();
         this.handleError(error.json().error);
       }
       );
@@ -156,9 +168,9 @@ export class StatisticsPage {
         data: this.prod_data,
         // data: this.numbers,
         backgroundColor: [
-          '#f5bd39','#f5bd39','#f5bd39',
-          '#d95f02','#d95f02','#d95f02',
-          '#1b9e77','#1b9e77','#1b9e77'
+          '#f5bd39', '#f5bd39', '#f5bd39',
+          '#d95f02', '#d95f02', '#d95f02',
+          '#1b9e77', '#1b9e77', '#1b9e77'
           // 'rgba(255, 99, 132, 0.2)',
           // 'rgba(244, 164, 96, 0.8)',
           // 'rgba(54, 162, 235, 0.2)',
@@ -181,16 +193,36 @@ export class StatisticsPage {
     };
 
     let options = {
+      legend: {
+        display: false
+      },
       scales: {
         yAxes: [{
-          ticks: {
-            beginAtZero: false,
-            // steps:8,
-            // stepValue:50,
-            // max:2000
+          scaleLabel: {
+            display: true,
+            labelString: 'tons'
           }
         }]
+      }     ,
+      tooltips: {
+        callbacks: {
+          label: function(tooltipItem) {
+          console.log(tooltipItem)
+            return tooltipItem.yLabel;
+          }
+        }
       }
+      // old with top label which hode/show data
+      // scales: {
+      //   yAxes: [{
+      //     ticks: {
+      //       beginAtZero: false,
+      //       // steps:8,
+      //       // stepValue:50,
+      //       // max:2000
+      //     }
+      //   }]
+      // }
     }
 
     return this.getChart(this.barCanvas.nativeElement, "bar", data, options);
@@ -253,17 +285,30 @@ export class StatisticsPage {
         // }
       ]
     };
+    
     let options = {
-      scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero: false,
-            // steps:10,
-            // stepValue:5,
-            // max:100
+      legend: {
+        display: false
+      },
+      tooltips: {
+        callbacks: {
+          label: function(tooltipItem) {
+          console.log(tooltipItem)
+            return tooltipItem.yLabel;
           }
-        }]
+        }
       }
+    
+      // scales: {
+      //   yAxes: [{
+      //     ticks: {
+      //       beginAtZero: false,
+      //       // steps:10,
+      //       // stepValue:5,
+      //       // max:100
+      //     }
+      //   }]
+      // }
     }
     return this.getChartForLine(this.lineCanvas.nativeElement, "line", data);
   }

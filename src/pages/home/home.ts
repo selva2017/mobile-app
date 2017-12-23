@@ -14,12 +14,13 @@ export class HomePage {
   isLoggedIn: boolean = false;
 
   constructor(public app: App, public navCtrl: NavController, public authService: AuthService, public loadingCtrl: LoadingController, private toastCtrl: ToastController,
-    private alertCtrl: AlertController,) {
+    private alertCtrl: AlertController, ) {
     if (localStorage.getItem("token")) {
       this.isLoggedIn = true;
     }
   }
 
+  companyId: string;
   prodStatistics: ProdStatistics;
   data1: number;
   data2: number;
@@ -35,19 +36,18 @@ export class HomePage {
 
   ionViewDidEnter() {
     console.log("Did enter...");
-    const loading = this.loadingCtrl.create({
-      content: 'Please wait...'
-    });
-
+    // const loading = this.loadingCtrl.create({
+    //   content: 'Please wait...'
+    // });
+this.showLoader();
     // this.authService.getActiveUser().getToken()
     // .then(
     // (token: string) => {
     // console.log(token);
     this.authService.fetchDashboardData()
-      .subscribe( 
+      .subscribe(
       (list) => {
         this.prodStatistics = list;
-        console.log(this.prodStatistics);
         this.prod_data = [];
         this.prod_month = [];
         // console.log(this.prodStatistics.productionSummaries.length);
@@ -56,20 +56,20 @@ export class HomePage {
         //     this.prod_data[i] = Number(this.prodStatistics.productionSummaries[i].amount/1000);
         //     this.prod_month[i] = this.prodStatistics.productionSummaries[i].month;
         // }
-        console.log(this.prod_data.length);
-        console.log(this.prod_data);
-        console.log(this.prod_month);
+        // console.log(this.prod_data.length);
+        // console.log(this.prod_data);
+        // console.log(this.prod_month);
         // this.numbers.push(Number(this.prodStatistics.stockWeek/1000));
         // this.numbers.push(Number(this.prodStatistics.stockMonth/1000));
         // this.numbers.push(Number(this.prodStatistics.stockQuarter/1000));
         // this.numbers.push(Number(this.prodStatistics.stockYear)/1000);
-        loading.dismiss();
+        this.loading.dismiss();
         // Call the chart from here
         // this.barChart = this.getLineChart();
         // this.barChart = this.getBarChart();
       },
       error => {
-        loading.dismiss();
+        this.loading.dismiss();
         this.handleError(error.json().error);
       }
       );
@@ -87,6 +87,7 @@ export class HomePage {
   }
 
   ionViewDidLoad() {
+    this.companyId = localStorage.getItem('companyId');
     // this wont get prod_data so need to call getLineChat() from Constructor
     // console.log('ionViewDidLoad ChartJsPage');
   }
@@ -111,7 +112,7 @@ export class HomePage {
 
   showLoader() {
     this.loading = this.loadingCtrl.create({
-      content: 'Authenticating...'
+      content: 'Loading Home page...'
     });
 
     this.loading.present();
