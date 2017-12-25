@@ -170,7 +170,8 @@ export class StatisticsPage {
         backgroundColor: [
           '#f5bd39', '#f5bd39', '#f5bd39',
           '#d95f02', '#d95f02', '#d95f02',
-          '#1b9e77', '#1b9e77', '#1b9e77'
+          '#1b9e77', '#1b9e77', '#1b9e77',
+          '#42A5F5','#42A5F5','#42A5F5'
           // 'rgba(255, 99, 132, 0.2)',
           // 'rgba(244, 164, 96, 0.8)',
           // 'rgba(54, 162, 235, 0.2)',
@@ -239,6 +240,13 @@ export class StatisticsPage {
           label: "Sales in lakhs",
           fill: true,
           lineTension: 0.1,
+          // backgroundColor: [
+          //   '#f5bd39', '#f5bd39', '#f5bd39',
+          //   '#d95f02', '#d95f02', '#d95f02',
+          //   '#1b9e77', '#1b9e77', '#1b9e77',
+          //   '#42A5F5','#42A5F5','#42A5F5'
+          // ],
+          // backgroundColor: '#42A5F5',
           backgroundColor: "rgba(75,192,192,0.4)",
           borderColor: "rgba(75,192,192,1)",
           borderCapStyle: 'butt',

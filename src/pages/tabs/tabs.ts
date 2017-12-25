@@ -20,10 +20,15 @@ export class TabsPage {
   trialBalPage = TrialBalPage;
   dayBookPage = DayBookPage;
   statisticsPage = StatisticsPage;
+  role: string;
 
   constructor(public navCtrl: NavController) {
-    if(!localStorage.getItem("token")) {
+    if (!localStorage.getItem("token")) {
       navCtrl.setRoot(LoginPage);
     }
+  }
+  ionViewDidEnter() {
+    this.role = localStorage.getItem('role');
+    console.log(this.role);
   }
 }

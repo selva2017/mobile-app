@@ -46,7 +46,8 @@ export class LoginPage {
               }
               else {
                 this.token = false;
-                this.isAuthenticated = false;
+                // this.isAuthenticated = false;
+                localStorage.setItem('isAuthenticated', 'false');
                 this.loading.dismiss();
                 // this.invalidLogin.emit(true);
             }

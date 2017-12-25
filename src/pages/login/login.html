@@ -1,8 +1,8 @@
 
 <ion-header>
   
-    <ion-navbar>
-      <ion-buttons start>
+    <ion-navbar [color]="isAndroid ? 'royal' : 'head'">
+        <ion-buttons start>
         <button ion-button icon-only menuToggle>
           <ion-icon name="menu"></ion-icon>
         </button>
@@ -22,12 +22,12 @@
       <ion-label stacked>Password</ion-label>
       <ion-input [(ngModel)]="loginData.password" name="password" type="password" placeholder="Password"></ion-input>
     </ion-item>
-    <button ion-button block type="submit">
+    <button ion-button block type="submit" [color]="'head'">
       Login
     </button>
   </form>
 
-  <button ion-button block clear (click)="register()">
-    No have an account? Register Now
+  <button ion-button block clear (click)="register()" [ngStyle]="{'color':'blue'}">
+    Not have an account? Register Now
   </button>
 </ion-content>

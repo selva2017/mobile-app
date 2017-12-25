@@ -22,7 +22,7 @@ export class MyApp {
   dayBookPage = DayBookPage;
   statisticsPage = StatisticsPage;
 
-  isAuthenticated = false;
+  isAuthenticated: boolean;
   
   @ViewChild('nav') nav: NavController;
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,
@@ -33,16 +33,19 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
     });
-    if (localStorage.getItem('isAuthenticated') == 'true')
-    {
+    if (localStorage.getItem('isAuthenticated') === 'true')
       this.isAuthenticated = true;
-    }
+     else
+    this.isAuthenticated = false;
   }
   
   onLoad(page: any) {
     this.nav.setRoot(page);
     this.menuCtrl.close();
-
+    if (localStorage.getItem('isAuthenticated') === 'true')
+      this.isAuthenticated = true;
+     else
+    this.isAuthenticated = false;
   }
   onLogout() {
     this.authService.logout();

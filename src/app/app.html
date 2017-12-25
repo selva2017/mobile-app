@@ -1,12 +1,12 @@
 <ion-menu [content]="nav">
     <ion-header>
-        <ion-toolbar [color]="isAndroid ? 'royal' : 'selva'">
+        <ion-toolbar [color]="isAndroid ? 'royal' : 'head'">
             <ion-title>Menu</ion-title>
         </ion-toolbar>
     </ion-header>
     <ion-content>
         <ion-list>
-            <button class="light" ion-item icon-left (click)="onLoad(rootPage)" *ngIf="isAuthenticated">
+            <!-- <button class="light" ion-item icon-left (click)="onLoad(rootPage)" *ngIf="isAuthenticated">
                 <ion-icon name="analytics"></ion-icon>
                 Dashboard
             </button>
@@ -17,17 +17,17 @@
             <button ion-item icon-left (click)="onLoad(dayBookPage)" *ngIf="isAuthenticated">
                 <ion-icon name="book"></ion-icon>
                 Day Book
-            </button>
+            </button> -->
             <button ion-item icon-left (click)="onLoad(loginPage)" *ngIf="!isAuthenticated">
-                <ion-icon name="log-in"></ion-icon>
+                <ion-icon name="log-in" [ngStyle]="{'color':'blue'}"></ion-icon>
                 Login
             </button>
             <button ion-item icon-left (click)="onLoad(registerPage)" *ngIf="!isAuthenticated">
-                <ion-icon name="person"></ion-icon>
+                <ion-icon name="person" [ngStyle]="{'color':'green'}"></ion-icon>
                 Register
             </button>
             <button ion-item icon-left (click)="onLogout()" *ngIf="isAuthenticated">
-                <ion-icon name="log-out"></ion-icon>
+                <ion-icon name="log-out" [ngStyle]="{'color':'red'}"></ion-icon>
                 Logout
             </button>
         </ion-list>
