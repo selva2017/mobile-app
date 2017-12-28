@@ -36,14 +36,12 @@
               <ion-row>
                 <ion-col col-8>
                   <h2 text-wrap>{{ item.reportKey }}</h2>
-  
                 </ion-col>
                 <ion-col col-4>
                   <div>
                     <p *ngIf="item.reportValue2 > 0">{{ displayINR(item.reportValue2) }} </p>
                     <p *ngIf="item.reportValue1 > 0"> {{ displayINR(item.reportValue1) }} </p>
                   </div>
-  
                 </ion-col>
               </ion-row>
             </ion-grid>

@@ -9,24 +9,25 @@ import { AuthService } from './../../providers/auth-service/auth-service';
 export class RegisterPage {
 
   loading: any;
-  regData = { username:'', password:'' };
+  regData = { email: '', password: '', confirmPassword: '', companyId: '' };
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthService, public loadingCtrl: LoadingController, private toastCtrl: ToastController) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthService, public loadingCtrl: LoadingController, private toastCtrl: ToastController) { }
 
-  // doSignup() {
-  //   this.showLoader();
-  //   this.authService.register(this.regData).then((result) => {
-  //     this.loading.dismiss();
-  //     this.navCtrl.pop();
-  //   }, (err) => {
-  //     this.loading.dismiss();
-  //     this.presentToast(err);
-  //   });
-  // }
+  doSignup(user) {
+    this.showLoader();
+    console.log(this.regData);
+    // this.authService.register(this.regData).then((result) => {
+    //   this.loading.dismiss();
+    //   this.navCtrl.pop();
+    // }, (err) => {
+    //   this.loading.dismiss();
+    //   this.presentToast(err);
+    // });
+  }
 
-  showLoader(){
+  showLoader() {
     this.loading = this.loadingCtrl.create({
-        content: 'Authenticating...'
+      content: 'Authenticating...'
     });
 
     this.loading.present();
