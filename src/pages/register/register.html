@@ -1,16 +1,16 @@
 <ion-header>
-  
-    <ion-navbar [color]="isAndroid ? 'royal' : 'head'">
-      <ion-buttons start>
-        <button ion-button icon-only menuToggle>
-          <ion-icon name="menu"></ion-icon>
-        </button>
-      </ion-buttons>
-      <ion-title>Register here</ion-title>
-    </ion-navbar>
-  
-  </ion-header>
-  <ion-content padding>
+
+  <ion-navbar [color]="isAndroid ? 'royal' : 'head'">
+    <ion-buttons start>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Register here</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content padding>
   <form (submit)="doSignup()">
     <ion-item>
       <ion-label stacked>Username</ion-label>
@@ -28,6 +28,7 @@
       <ion-label stacked>Company ID</ion-label>
       <ion-input [(ngModel)]="regData.companyId" name="companyId" type="text" placeholder="Company ID" required></ion-input>
     </ion-item>
+    <p style="color:red">{{error_message}}</p>
     <button ion-button block type="submit" [color]="'head'">
       SignUp
     </button>

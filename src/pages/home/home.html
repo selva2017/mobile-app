@@ -105,18 +105,23 @@
     </ion-list>
 
     <ion-list *ngSwitchCase="'statistics'">
-      <ion-item>
+      <ion-item *ngFor="let item of messages; let i = index">
         <ion-card text-wrap class="border-shade">
           <ion-card-title>
-            Spak Announcements...
+            <!-- Spak Announcements... -->
+            {{item.title}}
           </ion-card-title>
           <ion-item left>
-            <p>Published {{today | date:'medium'}}</p>
+            {{item.createdDate}}
+            <!-- <p>Published {{today | date:'medium'}}</p> -->
           </ion-item>
-          <img src="assets/imgs/logo.png" />
+          <!-- <img src="assets/imgs/logo.png" /> -->
+          <!-- <img src="https://offsiteimages-01.marathonfoto.com/MFT2015-01/05/787805/1047/0026.jpg?preset=t" /> -->
+          <img src={{item.url}} />
           <ion-card-content>
             <p>
-              The most popular industrial group ever, and largely responsible for bringing the new products.
+  {{item.message}}
+              <!-- The most popular industrial group ever, and largely responsible for bringing the new products. -->
             </p>
           </ion-card-content>
         </ion-card>

@@ -3,6 +3,7 @@ import { NavController, App, LoadingController, ToastController, AlertController
 import { LoginPage } from '../login/login';
 import { AuthService } from './../../providers/auth-service/auth-service';
 import { ProdStatistics } from './../../models/prod-statistics';
+import { Message } from '../../models/message';
 
 @Component({
   selector: 'page-home',
@@ -18,6 +19,8 @@ export class HomePage {
     if (localStorage.getItem("token")) {
       this.isLoggedIn = true;
     }
+
+
   }
 
   companyId: string;
@@ -32,14 +35,14 @@ export class HomePage {
   today: number = Date.now();
   prod_data: any[];
   prod_month: any[];
-
+  messages: Message[];
 
   ionViewDidEnter() {
     console.log("Did enter...");
     // const loading = this.loadingCtrl.create({
     //   content: 'Please wait...'
     // });
-this.showLoader();
+    this.showLoader();
     // this.authService.getActiveUser().getToken()
     // .then(
     // (token: string) => {
@@ -73,6 +76,20 @@ this.showLoader();
         this.handleError(error.json().error);
       }
       );
+
+    this.authService.getMessages()
+      .subscribe(
+      (list) => {
+        this.messages = list;
+        // console.log(this.messages);
+        console.log(list);
+        // this.loading.dismiss();
+      },
+      error => {
+        // this.loading.dismiss();
+        // this.handleError(error.json().error);
+      }
+      );
   }
   //   // );
   //   // this.data1 = [this.prodStatistics[0].stockWeek, this.prodStatistics[0].stockMonth, this.prodStatistics[0].stockQuarter, this.prodStatistics[0].stockYear];
@@ -90,6 +107,8 @@ this.showLoader();
     this.companyId = localStorage.getItem('companyId');
     // this wont get prod_data so need to call getLineChat() from Constructor
     // console.log('ionViewDidLoad ChartJsPage');
+
+
   }
 
   displayINR(amount: number) {
