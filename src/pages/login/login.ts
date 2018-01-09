@@ -28,22 +28,22 @@ export class LoginPage {
     this.authService.login(this.loginData)
         .subscribe(
         success => {
-            console.log(success);
+            // console.log(success);
             
             if (success.statusMessage == "AUTH_SUCCESS") {
-              this.loading.dismiss();
               this.token = true;
-                this.token_name = success.token;
-                localStorage.setItem('token', this.token_name);
-                localStorage.setItem('role', success.role);
-                // localStorage.setItem('companyName', success.companyName);
-                localStorage.setItem('companyId', success.companyId);
-                localStorage.setItem('isAuthenticated', 'true');
-                console.log('Company Id -' + success.companyId);
-                console.log('Role -' + success.role);
-                // this.isAuthenticated = true;
-                this.navCtrl.setRoot(TabsPage);
-              }
+              this.token_name = success.token;
+              localStorage.setItem('token', this.token_name);
+              localStorage.setItem('role', success.role);
+              // localStorage.setItem('companyName', success.companyName);
+              localStorage.setItem('companyId', success.companyId);
+              localStorage.setItem('isAuthenticated', 'true');
+              // console.log('Company Id -' + success.companyId);
+              // console.log('Role -' + success.role);
+              // this.isAuthenticated = true;
+              this.navCtrl.setRoot(TabsPage);
+              this.loading.dismiss();
+            }
               else {
                 this.token = false;
                 // this.isAuthenticated = false;
@@ -91,7 +91,7 @@ export class LoginPage {
     });
 
     toast.onDidDismiss(() => {
-      console.log('Dismissed toast');
+      // console.log('Dismissed toast');
     });
 
     toast.present();

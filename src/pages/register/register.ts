@@ -21,7 +21,7 @@ export class RegisterPage {
       this.authService.register(this.regData)
         .subscribe(
         success => {
-          console.log(success);
+          // console.log(success);
           this.loading.dismiss();
         },
         (error) => {
@@ -54,7 +54,7 @@ export class RegisterPage {
     });
 
     toast.onDidDismiss(() => {
-      console.log('Dismissed toast');
+      // console.log('Dismissed toast');
     });
 
     toast.present();

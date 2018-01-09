@@ -1,7 +1,8 @@
 // import { TrialBalanceService } from './../../services/trialbalance';
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from "@angular/forms";
-import { PopoverController, LoadingController, AlertController } from "ionic-angular";
+// import { NgForm } from "@angular/forms";
+// import { PopoverController, LoadingController, AlertController } from "ionic-angular";
+import { LoadingController, AlertController } from "ionic-angular";
 import { AuthService } from './../../providers/auth-service/auth-service';
 
 
@@ -14,13 +15,13 @@ export class TrialBalPage implements OnInit {
   loading: any;
   companyId: string;
   
-  constructor(private popoverCtrl: PopoverController,
-    private authService: AuthService,
+  // constructor(private popoverCtrl: PopoverController,
+  constructor(private authService: AuthService,
     private loadingCtrl: LoadingController,
     private alertCtrl: AlertController) {
   }
   ionViewDidLoad() {
-    console.log('ionViewDidLoad TrialBalPage');
+    // console.log('ionViewDidLoad TrialBalPage');
   }
   onShowOptions() { }
 

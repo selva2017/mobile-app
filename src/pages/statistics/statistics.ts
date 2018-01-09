@@ -61,8 +61,9 @@ export class StatisticsPage {
 
     this.loading.present();
   }
-  ionViewDidEnter() {
-    console.log("Did enter...");
+  // ionViewDidEnter() {
+    ngOnInit() {
+          console.log("Did enter...");
     // const loading = this.loadingCtrl.create({
     //   content: 'Please wait...'
     // });

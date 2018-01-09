@@ -29,7 +29,7 @@
 <ion-content padding>
 <!-- <ion-content padding class="bg"> -->
   <div [ngSwitch]="category">
-    <ion-list *ngSwitchCase="'production'">
+    <ion-list *ngSwitchCase="'production' || showData == true">
       <ion-item class="border-shade">
         <ion-thumbnail item-start [ngStyle]="{'color':'green'}">
           <ion-icon ios="ios-stats" md="md-stats"></ion-icon>
@@ -42,7 +42,7 @@
           <ion-icon ios="logo-buffer" md="logo-buffer"></ion-icon>
         </ion-thumbnail>
         <h2>This Month</h2>
-        <h1>{{displayIndianNumber(prodStatistics.monthlyProduction/1000)}} tons</h1>
+        <h1>{{displayIndianNumber(prodStatistics?.monthlyProduction/1000)}} tons</h1>
       </ion-item>
       <br>
       <ion-item class="border-shade">
@@ -50,7 +50,7 @@
           <ion-icon ios="ios-paper" md="md-paper"></ion-icon>
         </ion-thumbnail>
         <h2>Current Quarter</h2>
-        <h1>{{displayIndianNumber(prodStatistics.quarterlyProduction/1000)}} tons</h1>
+        <h1>{{displayIndianNumber(prodStatistics?.quarterlyProduction/1000)}} tons</h1>
       </ion-item>
       <br>
       <ion-item class="border-shade">
@@ -58,7 +58,7 @@
           <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>
         </ion-thumbnail>
         <h2>Year to Date</h2>
-        <h1>{{displayIndianNumber(prodStatistics.yearlyProduction/1000)}} tons</h1>
+        <h1>{{displayIndianNumber(prodStatistics?.yearlyProduction/1000)}} tons</h1>
       </ion-item>
       <br>
       <ion-item right class="border-shade">
@@ -72,7 +72,7 @@
           <ion-icon ios="ios-pricetags-outline" md="md-pricetags"></ion-icon>
         </ion-thumbnail>
         <h2>Weekly</h2>
-        <h1>{{displayINR(prodStatistics.weeklySales)}} </h1>
+        <h1>{{displayINR(prodStatistics?.weeklySales)}} </h1>
       </ion-item>
       <br>
       <ion-item class="border-shade">
@@ -80,7 +80,7 @@
           <ion-icon ios="ios-pie-outline" md="md-pie"></ion-icon>
         </ion-thumbnail>
         <h2>This Month</h2>
-        <h1>{{displayINR(prodStatistics.monthlySales)}}</h1>
+        <h1>{{displayINR(prodStatistics?.monthlySales)}}</h1>
       </ion-item>
       <br>
       <ion-item class="border-shade">
@@ -88,7 +88,7 @@
           <ion-icon ios="ios-rainy" md="md-rainy"></ion-icon>
         </ion-thumbnail>
         <h2>Quarterly</h2>
-        <h1>{{displayINR(prodStatistics.quarterlySales)}}</h1>
+        <h1>{{displayINR(prodStatistics?.quarterlySales)}}</h1>
       </ion-item>
       <br>
       <ion-item class="border-shade">
@@ -96,7 +96,7 @@
           <ion-icon ios="logo-buffer" md="logo-buffer"></ion-icon>
         </ion-thumbnail>
         <h2>Yearly</h2>
-        <h1>{{displayINR(prodStatistics.yearlySales)}} </h1>
+        <h1>{{displayINR(prodStatistics?.yearlySales)}} </h1>
       </ion-item>
       <br>
       <ion-item right class="border-shade">
@@ -106,7 +106,7 @@
 
     <ion-list *ngSwitchCase="'statistics'">
       <ion-item *ngFor="let item of messages; let i = index">
-        <ion-card text-wrap class="border-shade">
+        <ion-card *ngIf="i < 1" text-wrap class="border-shade">
           <ion-card-title>
             <!-- Spak Announcements... -->
             {{item.title}}

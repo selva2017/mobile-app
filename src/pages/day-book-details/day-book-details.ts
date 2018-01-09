@@ -18,7 +18,7 @@ export class DayBookDetailsPage {
   ) { }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad DayBook details');
+    // console.log('ionViewDidLoad DayBook details');
     this.companyId = localStorage.getItem('companyId');
   }
   ngOnInit() {

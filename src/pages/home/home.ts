@@ -1,3 +1,4 @@
+import { SplashScreen } from '@ionic-native/splash-screen';
 import { Component } from '@angular/core';
 import { NavController, App, LoadingController, ToastController, AlertController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
@@ -13,18 +14,47 @@ export class HomePage {
 
   loading: any;
   isLoggedIn: boolean = false;
-
+  showData: boolean = false;
   constructor(public app: App, public navCtrl: NavController, public authService: AuthService, public loadingCtrl: LoadingController, private toastCtrl: ToastController,
-    private alertCtrl: AlertController, ) {
+    private alertCtrl: AlertController, splashScreen: SplashScreen) {
+    // this.showLoader();
     if (localStorage.getItem("token")) {
       this.isLoggedIn = true;
     }
+    // console.log("Constructor...");
+    // this.authService.fetchDashboardData()
+    //   .subscribe(
+    //   (list) => {
+    //     this.prodStatistics = list;
+    //     this.prod_data = [];
+    //     this.prod_month = [];
+    //     // this.loading.dismiss();
+    //   },
+    //   error => {
+    //     this.loading.dismiss();
+    //     this.handleError(error.json().error);
+    //   }
+    //   );
 
-
+    // this.authService.getMessages()
+    //   .subscribe(
+    //   (list) => {
+    //     this.messages = list;
+    //     console.log("Message count");
+    //     console.log(list);
+    //     this.loading.dismiss();
+    //   },
+    //   error => {
+    //     this.loading.dismiss();
+    //   }
+    //   );
+    // this.showData = true;
+    splashScreen.hide();
   }
 
+  prodStatistics: ProdStatistics[];
+  category: string;
   companyId: string;
-  prodStatistics: ProdStatistics;
   data1: number;
   data2: number;
   data3: number;
@@ -37,12 +67,13 @@ export class HomePage {
   prod_month: any[];
   messages: Message[];
 
-  ionViewDidEnter() {
-    console.log("Did enter...");
+  // ionViewDidEnter() {
+    ngOnInit() {
+    this.category = "production";
+    // console.log("Did enter...");
     // const loading = this.loadingCtrl.create({
     //   content: 'Please wait...'
     // });
-    this.showLoader();
     // this.authService.getActiveUser().getToken()
     // .then(
     // (token: string) => {
@@ -50,6 +81,7 @@ export class HomePage {
     this.authService.fetchDashboardData()
       .subscribe(
       (list) => {
+        this.showLoader();
         this.prodStatistics = list;
         this.prod_data = [];
         this.prod_month = [];
@@ -80,19 +112,20 @@ export class HomePage {
     this.authService.getMessages()
       .subscribe(
       (list) => {
+        this.showLoader();
         this.messages = list;
         // console.log(this.messages);
-        console.log(list);
-        // this.loading.dismiss();
+        // console.log(list);
+        this.loading.dismiss();
       },
       error => {
-        // this.loading.dismiss();
-        // this.handleError(error.json().error);
+        this.loading.dismiss();
+        this.handleError(error.json().error);
       }
       );
   }
-  //   // );
-  //   // this.data1 = [this.prodStatistics[0].stockWeek, this.prodStatistics[0].stockMonth, this.prodStatistics[0].stockQuarter, this.prodStatistics[0].stockYear];
+  // );
+  // this.data1 = [this.prodStatistics[0].stockWeek, this.prodStatistics[0].stockMonth, this.prodStatistics[0].stockQuarter, this.prodStatistics[0].stockYear];
   // }
   private handleError(errorMessage: string) {
     const alert = this.alertCtrl.create({
@@ -107,7 +140,6 @@ export class HomePage {
     this.companyId = localStorage.getItem('companyId');
     // this wont get prod_data so need to call getLineChat() from Constructor
     // console.log('ionViewDidLoad ChartJsPage');
-
 
   }
 
@@ -146,7 +178,7 @@ export class HomePage {
     });
 
     toast.onDidDismiss(() => {
-      console.log('Dismissed toast');
+      // console.log('Dismissed toast');
     });
 
     toast.present();

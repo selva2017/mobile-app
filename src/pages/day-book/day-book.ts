@@ -32,7 +32,7 @@ export class DayBookPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad DayBookPage');
+    // console.log('ionViewDidLoad DayBookPage');
     this.companyId = localStorage.getItem('companyId');
   }
 
