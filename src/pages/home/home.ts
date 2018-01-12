@@ -163,7 +163,7 @@ export class HomePage {
 
   showLoader() {
     this.loading = this.loadingCtrl.create({
-      content: 'Loading Home page...'
+      content: 'Loading Home page ...'
     });
 
     this.loading.present();

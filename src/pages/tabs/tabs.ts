@@ -2,8 +2,6 @@ import { StatisticsPage } from './../statistics/statistics';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { HomePage } from '../home/home';
-import { AboutPage } from '../about/about';
-import { ContactPage } from '../contact/contact';
 import { LoginPage } from '../login/login';
 import { TrialBalPage } from '../trial-bal/trial-bal';
 import { DayBookPage } from '../day-book/day-book';

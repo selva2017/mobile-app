@@ -123,7 +123,7 @@ export class StatisticsPage {
 
   private handleError(errorMessage: string) {
     const alert = this.alertCtrl.create({
-      title: 'An error occurred!',
+      title: 'An error occurred!!!',
       message: errorMessage,
       buttons: ['Ok']
     });
