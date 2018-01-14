@@ -9,7 +9,7 @@ import { AuthService } from './../../providers/auth-service/auth-service';
 export class RegisterPage {
 
   loading: any;
-  regData = { email: '', password: '', confirmPassword: '', companyId: '' };
+  regData = { email: '', password: '', firstName: '', lastName:'',confirmPassword: '', companyId: '' };
   error_message: string = '';
   constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthService, public loadingCtrl: LoadingController, private toastCtrl: ToastController) { }
 

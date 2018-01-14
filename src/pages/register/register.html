@@ -13,19 +13,27 @@
 <ion-content padding>
   <form (submit)="doSignup()">
     <ion-item>
-      <ion-label stacked>Username</ion-label>
-      <ion-input [(ngModel)]="regData.email" name="email" type="text" placeholder="Your username" required></ion-input>
+      <!-- <ion-label stacked>Username</ion-label> -->
+      <ion-input [(ngModel)]="regData.email" name="email" type="text" placeholder="Username" required></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label stacked>Password</ion-label>
-      <ion-input [(ngModel)]="regData.password" name="password" type="password" placeholder="Your password" required></ion-input>
+      <!-- <ion-label stacked>Password</ion-label> -->
+      <ion-input [(ngModel)]="regData.password" name="password" type="password" placeholder="Password" required></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label stacked>Confirm Password</ion-label>
+      <!-- <ion-label stacked>Confirm Password</ion-label> -->
       <ion-input [(ngModel)]="regData.confirmPassword" name="confirmPassword" type="password" placeholder="Confirm Password" required></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label stacked>Company ID</ion-label>
+      <!-- <ion-label stacked>First Name</ion-label> -->
+      <ion-input [(ngModel)]="regData.firstName" name="firstName" type="text" placeholder="First Name" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <!-- <ion-label stacked>Last Name</ion-label> -->
+      <ion-input [(ngModel)]="regData.lastName" name="lastName" type="text" placeholder="Last Name" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <!-- <ion-label stacked>Company ID</ion-label> -->
       <ion-input [(ngModel)]="regData.companyId" name="companyId" type="text" placeholder="Company ID" required></ion-input>
     </ion-item>
     <p style="color:red">{{error_message}}</p>

@@ -18,6 +18,7 @@ export class DayBookPage {
   dayBookDetailsPage = DayBookDetailsPage;
   companyId: string;
   loading: any;
+  role: string;
 
   constructor(private popoverCtrl: PopoverController,
     private authService: AuthService,
@@ -34,6 +35,7 @@ export class DayBookPage {
   ionViewDidLoad() {
     // console.log('ionViewDidLoad DayBookPage');
     this.companyId = localStorage.getItem('companyId');
+    this.role = localStorage.getItem('role');
   }
 
   showLoader() {
@@ -44,6 +46,19 @@ export class DayBookPage {
     this.loading.present();
   }
 
+  onRemoveFromList(key: String) {
+    console.log("item" + key);
+    this.authService.hideDayBookRow(key)
+      .subscribe(
+      // (res: Daybook) => console.log(res),
+      (success) => {
+        console.log("success");
+        this.ngOnInit();
+      },
+      (error) => console.log(error)
+      );
+  }
+
   ngOnInit() {
     // const loading = this.loadingCtrl.create({
     //   content: 'Please wait...'
@@ -51,7 +66,7 @@ export class DayBookPage {
     // this.authService.getActiveUser().getToken()
     // .then(
     // (token: string) => {
-      this.showLoader();
+    this.showLoader();
     this.authService.fetchDayBook()
       .subscribe(
       (list: Daybook[]) => {
@@ -70,7 +85,7 @@ export class DayBookPage {
 
   private handleError(errorMessage: string) {
     const alert = this.alertCtrl.create({
-      title: 'An error occurred !!!',
+      title: 'Network Connection error!',
       message: errorMessage,
       buttons: ['Ok']
     });

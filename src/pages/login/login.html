@@ -15,19 +15,19 @@
 <ion-content padding>
   <form (submit)="doLogin()">
     <ion-item>
-      <ion-label stacked>Username</ion-label>
-      <ion-input [(ngModel)]="loginData.email" name="email" type="text" placeholder="email" required></ion-input>
+      <!-- <ion-label stacked>Username</ion-label> -->
+      <ion-input [(ngModel)]="loginData.email" name="email" type="text" placeholder="Username" required></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label stacked>Password</ion-label>
+      <!-- <ion-label stacked>Password</ion-label> -->
       <ion-input [(ngModel)]="loginData.password" name="password" type="password" placeholder="Password" required></ion-input>
     </ion-item>
     <button ion-button block type="submit" [color]="'head'">
       Login
     </button>
   </form>
-
-  <button ion-button block clear (click)="register()" [ngStyle]="{'color':'blue'}">
-    Not have an account? Register Now
+<br>
+  <button ion-button block clear (click)="register()" [ngStyle]="{'color':'green'}">
+    New User? Click here to Register
   </button>
 </ion-content>

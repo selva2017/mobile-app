@@ -13,7 +13,7 @@
       </ion-buttons> -->
       <ion-title>Trail Balance</ion-title>
       <ion-buttons right>
-        <img alt="logo" height="40" src="./assets/imgs/{{companyId}}.png">
+        <img alt="logo" height="40" src="https://s3.ap-south-1.amazonaws.com/bizdaz-images/mobile/{{companyId}}.png">
       </ion-buttons>
     </ion-navbar>
   
@@ -62,11 +62,11 @@
             </ion-grid> -->
   
           </ion-item>
-          <ion-item-options>
-            <!-- <button ion-button color="danger" (click)="onRemoveFromList(item)">
+          <ion-item-options >
+            <button *ngIf="role == '1'" ion-button color="danger" (click)="onRemoveFromList(item.tallySummaryIid)">
               <ion-icon name="trash"></ion-icon>
-              Remove
-            </button> -->
+              Hide
+            </button>
           </ion-item-options>
         </ion-item-sliding>
       </ion-list>

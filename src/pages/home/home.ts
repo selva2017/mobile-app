@@ -129,7 +129,7 @@ export class HomePage {
   // }
   private handleError(errorMessage: string) {
     const alert = this.alertCtrl.create({
-      title: 'An error occurred!',
+      title: 'Network Connection error!',
       message: errorMessage,
       buttons: ['Ok']
     });

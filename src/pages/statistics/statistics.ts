@@ -123,7 +123,7 @@ export class StatisticsPage {
 
   private handleError(errorMessage: string) {
     const alert = this.alertCtrl.create({
-      title: 'An error occurred!!!',
+      title: 'Network Connection error!',
       message: errorMessage,
       buttons: ['Ok']
     });
@@ -241,14 +241,14 @@ export class StatisticsPage {
           label: "Sales in lakhs",
           fill: true,
           lineTension: 0.1,
-          // backgroundColor: [
-          //   '#f5bd39', '#f5bd39', '#f5bd39',
-          //   '#d95f02', '#d95f02', '#d95f02',
-          //   '#1b9e77', '#1b9e77', '#1b9e77',
-          //   '#42A5F5','#42A5F5','#42A5F5'
-          // ],
+          backgroundColor: [
+            '#f5bd39', '#f5bd39', '#f5bd39',
+            '#d95f02', '#d95f02', '#d95f02',
+            '#1b9e77', '#1b9e77', '#1b9e77',
+            '#42A5F5','#42A5F5','#42A5F5'
+          ],
           // backgroundColor: '#42A5F5',
-          backgroundColor: "rgba(75,192,192,0.4)",
+          // backgroundColor: "rgba(75,192,192,0.4)",
           borderColor: "rgba(75,192,192,1)",
           borderCapStyle: 'butt',
           borderDash: [],
@@ -319,7 +319,7 @@ export class StatisticsPage {
       //   }]
       // }
     }
-    return this.getChartForLine(this.lineCanvas.nativeElement, "line", data);
+    return this.getChartForLine(this.lineCanvas.nativeElement, "bar", data);
   }
 
   getDoughnutChart() {

@@ -14,7 +14,8 @@ export class TrialBalPage implements OnInit {
   trialBalanceList: any[];
   loading: any;
   companyId: string;
-  
+  role: string;
+
   // constructor(private popoverCtrl: PopoverController,
   constructor(private authService: AuthService,
     private loadingCtrl: LoadingController,
@@ -22,20 +23,39 @@ export class TrialBalPage implements OnInit {
   }
   ionViewDidLoad() {
     // console.log('ionViewDidLoad TrialBalPage');
+    this.role = localStorage.getItem('role');
   }
   onShowOptions() { }
 
   itemSelected() { }
-  onRemoveFromList(item) {
 
+  onRemoveFromList(key: String) {
+    console.log("item" + key);
+    let num = 0;
+    let row;
+    for (num = 0; num <= this.trialBalanceList.length; num++) {
+      if (this.trialBalanceList[num].tallySummaryIid == key)
+        break;
+    }
+    let product_update = this.trialBalanceList[num];
+    this.authService.hideTrialBalanceRow(product_update)
+      .subscribe(
+      (success) => {
+        console.log("success");
+        this.ngOnInit();
+      },
+      (error) => console.log(error)
+      );
   }
-  showLoader(){
+
+  showLoader() {
     this.loading = this.loadingCtrl.create({
-        content: 'Gathering Trial Balance...'
+      content: 'Gathering Trial Balance...'
     });
 
     this.loading.present();
   }
+
   ngOnInit() {
     this.showLoader();
     // const loading = this.loadingCtrl.create({
@@ -50,29 +70,29 @@ export class TrialBalPage implements OnInit {
     //       return;
     //     }
     // this.authService.getActiveUser().getToken()
-      // .then(
-      // (token: string) => {
-        // this.showLoader();
-        
-        this.authService.fetchTrialBalance()
-          .subscribe(
-          (list: any[]) => {
-            this.loading.dismiss();
-            // console.log(list);
-            this.trialBalanceList = list;
-            // if (list) {
-            //   this.listItems = list;
-            // } else {
-            //   this.listItems = [];
-            // }
-          },
-          error => {
-            this.loading.dismiss();
-            this.handleError(error.json().error);
-          }
-          );
-      // }
-      // );
+    // .then(
+    // (token: string) => {
+    // this.showLoader();
+
+    this.authService.fetchTrialBalance()
+      .subscribe(
+      (list: any[]) => {
+        this.loading.dismiss();
+        // console.log(list);
+        this.trialBalanceList = list;
+        // if (list) {
+        //   this.listItems = list;
+        // } else {
+        //   this.listItems = [];
+        // }
+      },
+      error => {
+        this.loading.dismiss();
+        this.handleError(error.json().error);
+      }
+      );
+    // }
+    // );
 
     // fetchList(token: string) {
     // const userId = this.authService.getActiveUser().uid;
@@ -97,7 +117,7 @@ export class TrialBalPage implements OnInit {
   }
   private handleError(errorMessage: string) {
     const alert = this.alertCtrl.create({
-      title: 'An error occurred!',
+      title: 'Network Connection error!',
       message: errorMessage,
       buttons: ['Ok']
     });
