@@ -11,18 +11,27 @@ export class RegisterPage {
   loading: any;
   regData = { email: '', password: '', firstName: '', lastName:'',confirmPassword: '', companyId: '' };
   error_message: string = '';
-  constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthService, public loadingCtrl: LoadingController, private toastCtrl: ToastController) { }
+  constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthService, 
+    private alertCtrl: AlertController,
+    public loadingCtrl: LoadingController, private toastCtrl: ToastController) { }
 
   doSignup(user) {
     var valid_password: boolean = false;
     this.showLoader();
-    this.regData.password === this.regData.confirmPassword ? valid_password = true : this.error_message = "Password does not match";
+    ((this.regData.password === this.regData.confirmPassword) && (this.regData.companyId !== null)) ? valid_password = true : this.error_message = "Password does not match";
     if (valid_password) {
       this.authService.register(this.regData)
         .subscribe(
         success => {
           // console.log(success);
+          this.regData.email = "";
+          this.regData.password= "";
+          this.regData.firstName = "";
+          this.regData.lastName= "";
+          this.regData.confirmPassword= "";
+          this.regData.companyId= "";
           this.loading.dismiss();
+          this.handleError("success");         
         },
         (error) => {
           this.loading.dismiss();
@@ -39,7 +48,7 @@ export class RegisterPage {
 
   showLoader() {
     this.loading = this.loadingCtrl.create({
-      content: 'Authenticating...'
+      content: 'Registering the user...'
     });
 
     this.loading.present();
@@ -59,5 +68,12 @@ export class RegisterPage {
 
     toast.present();
   }
-
+  private handleError(errorMessage: string) {
+    const alert = this.alertCtrl.create({
+      // title: "",
+      subTitle: "User Registration is successful!",
+      buttons: ['Ok'],
+    });
+    alert.present();
+  }
 }

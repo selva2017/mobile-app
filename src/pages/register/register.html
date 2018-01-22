@@ -11,7 +11,7 @@
 
 </ion-header>
 <ion-content padding>
-  <form (submit)="doSignup()">
+  <form (ngSubmit)="doSignup(registerForm)" #registerForm="ngForm">
     <ion-item>
       <!-- <ion-label stacked>Username</ion-label> -->
       <ion-input [(ngModel)]="regData.email" name="email" type="text" placeholder="Username" required></ion-input>
@@ -37,7 +37,7 @@
       <ion-input [(ngModel)]="regData.companyId" name="companyId" type="text" placeholder="Company ID" required></ion-input>
     </ion-item>
     <p style="color:red">{{error_message}}</p>
-    <button ion-button block type="submit" [color]="'head'">
+    <button ion-button block type="submit" [color]="'head'" [disabled]="!registerForm.valid">
       SignUp
     </button>
   </form>
