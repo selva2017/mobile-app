@@ -16,6 +16,7 @@ import { RegisterPage } from '../pages/register/register';
 import { TrialBalPage } from '../pages/trial-bal/trial-bal';
 import { DayBookDetailsPage } from '../pages/day-book-details/day-book-details';
 import { StatisticsPage } from '../pages/statistics/statistics';
+import { OrdersPage } from './../pages/orders/orders';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { StatisticsPage } from '../pages/statistics/statistics';
     TrialBalPage,
     DayBookPage,
     DayBookDetailsPage,
-    StatisticsPage
+    StatisticsPage,
+    OrdersPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),BrowserModule,HttpModule
@@ -42,7 +44,8 @@ import { StatisticsPage } from '../pages/statistics/statistics';
     TrialBalPage,
     DayBookPage,
     DayBookDetailsPage,
-    StatisticsPage
+    StatisticsPage,
+    OrdersPage
   ],
   providers: [
     StatusBar,

@@ -3,6 +3,7 @@
   <ion-tab [root]="trialBalPage" tabIcon="list-box" tabTitle="Trial Balance" [ngStyle]="{'color':'blue'}"></ion-tab>
   <ion-tab [root]="dayBookPage" tabIcon="book" tabTitle="Day book" [ngStyle]="{'color':'blue'}"></ion-tab>
   <ion-tab [root]="statisticsPage" tabIcon="stats" tabTitle="Statistics" [ngStyle]="{'color':'blue'}"></ion-tab>
+  <!-- <ion-tab [root]="ordersPage" tabIcon="stats" tabTitle="Orders" [ngStyle]="{'color':'blue'}"></ion-tab> -->
 </ion-tabs>
 <ion-tabs *ngIf="role == '2'" [color]="'tail'">
   <ion-tab [root]="homePage" tabTitle="Home" tabIcon="home"></ion-tab>
@@ -13,6 +14,7 @@
   <ion-tab [root]="homePage" tabTitle="Home" tabIcon="home"></ion-tab>
   <ion-tab [root]="statisticsPage" tabIcon="stats" tabTitle="Statistics" [ngStyle]="{'color':'blue'}"></ion-tab>
 </ion-tabs>
+
 <!-- <ion-tabs [color]="'tail'">
   <ion-tab [root]="homePage" tabTitle="Home" tabIcon="home"></ion-tab>
   <ion-tab *ngIf="role == '1' || role == '2'" [root]="trialBalPage" tabIcon="list-box" tabTitle="Trial Balance" [ngStyle]="{'color':'blue'}"></ion-tab>

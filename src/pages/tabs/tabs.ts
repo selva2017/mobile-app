@@ -1,10 +1,11 @@
-import { StatisticsPage } from './../statistics/statistics';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { LoginPage } from '../login/login';
 import { TrialBalPage } from '../trial-bal/trial-bal';
 import { DayBookPage } from '../day-book/day-book';
+import { StatisticsPage } from './../statistics/statistics';
+import { OrdersPage } from '../orders/orders';
 
 @Component({
   templateUrl: 'tabs.html'
@@ -18,6 +19,7 @@ export class TabsPage {
   trialBalPage = TrialBalPage;
   dayBookPage = DayBookPage;
   statisticsPage = StatisticsPage;
+  ordersPage = OrdersPage;
   role: string;
 
   constructor(public navCtrl: NavController) {

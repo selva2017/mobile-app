@@ -10,6 +10,7 @@ import { DayBookPage } from '../pages/day-book/day-book';
 import { StatisticsPage } from './../pages/statistics/statistics';
 import { RegisterPage } from './../pages/register/register';
 import { LoginPage } from './../pages/login/login';
+import { OrdersPage } from '../pages/orders/orders';
 
 @Component({
   templateUrl: 'app.html'
@@ -21,7 +22,7 @@ export class MyApp {
   registerPage = RegisterPage;
   dayBookPage = DayBookPage;
   statisticsPage = StatisticsPage;
-
+  ordersPage = OrdersPage;
   isAuthenticated: boolean;
   
   @ViewChild('nav') nav: NavController;
